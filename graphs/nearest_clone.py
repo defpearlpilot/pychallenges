@@ -18,25 +18,40 @@ import sys
 #
 
 
+class Edge(object):
+    def __init__(self, distance, node):
+        self.node = node
+        self.distance = distance
+
+
 class Node(object):
-    def __init__(self, number, color):
-        self.number = number
+    def __init__(self, node_id, color):
+        self.node_id = node_id
         self.color = color
 
         self.edges = {}
 
 
 def find_shortest(graph_nodes, graph_from, graph_to, ids, val):
-    nodes = dict(((n + 1, Node(n + 1, c)) for n, c in enumerate(ids)))
+    node_map = {}
+    color_map = {}
+
+    for num, color in enumerate(ids):
+        node_id = num + 1
+        node = Node(node_id, color)
+        node_map[node.node_id] = node
+
+        color_list = color_map.setdefault(color, [])
+        color_list.append(node)
 
     for from_id, to_id in zip(graph_from, graph_to):
-        node_from = nodes[from_id]
-        node_to = nodes[to_id]
+        node_from = node_map[from_id]
+        node_to = node_map[to_id]
         node_from.edges[to_id] = node_to
 
-    print("FOO")
+
+
     return 4
-    # solve here
 
 
 def input_from_file():
