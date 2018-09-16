@@ -12,7 +12,7 @@ def is_prime(n):
     """"pre-condition: n is a nonnegative integer
     post-condition: return True if n is prime and False otherwise."""
     if n < 2:
-        return False;
+        return False
     if n % 2 == 0:
         return n == 2  # return False
     k = 3
@@ -37,13 +37,6 @@ def manipulate_generator(generator, n):
         generator.send(next_int)
 
 
-def solve(reader, _solution):
-    n = int(reader())
-    ar = reader()
-
-    return _solution(n, ar)
-
-
 def positive_integers_generator():
     n = 1
     while True:
@@ -54,19 +47,11 @@ def positive_integers_generator():
             n += 1
 
 
-def solve_from_file(file):
-    def generator():
-        num = 1
-
-        while num < 17:
-            print("Yielding", num)
-            yield num
-            num += 1
-
+def solve():
     total = 10
     gen = positive_integers_generator()
     manipulate_generator(gen, total)
 
 
 if __name__ == '__main__':
-    solve_from_file("sf3.txt")
+    solve()
