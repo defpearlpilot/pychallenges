@@ -43,4 +43,4 @@ def solve_from_file(file):
 
 
 if __name__ == '__main__':
-    solve_from_file("sock_input.txt")
+    solve_from_file("sock_merchant.txt")
